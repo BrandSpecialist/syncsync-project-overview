@@ -88,322 +88,336 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center flex-wrap">
-            <h1 class="text-2xl font-bold"><span class="flowsync-title-outlined">syncsync</span>™</h1>
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-indigo-600 focus:outline-none focus:text-indigo-600">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+    <div id="login-screen" class="fixed inset-0 bg-gray-50 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-96 text-center">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-4">Accesso Richiesto</h2>
+            <p class="text-gray-600 mb-6">Inserisci la password per visualizzare il progetto.</p>
+            <input type="password" id="password-input" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Password">
+            <p id="error-message" class="text-red-500 mt-2 hidden">Password errata. Riprova.</p>
+            <button id="login-button" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200">
+                Accedi
             </button>
-            <div id="navigation-menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 w-full md:w-auto mt-4 md:mt-0">
-                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-                    <li><a href="#introduction" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Introduzione</a></li>
-                    <li><a href="#architecture" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Architettura</a></li>
-                    <li><a href="#backend" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Backend</a></li>
-                    <li><a href="#frontend" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Frontend</a></li>
-                    <li><a href="#frontend-preview" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Anteprima UI</a></li>
-                    <li><a href="#setup" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Setup</a></li>
-                    <li><a href="#future" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Sviluppi Futuri</a></li>
-                </ul>
-            </div>
         </div>
-    </nav>
+    </div>
 
-    <main class="container mx-auto p-6 md:p-8 space-y-12">
+    <div id="app-content" class="hidden">
+        <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+            <div class="container mx-auto flex justify-between items-center flex-wrap">
+                <h1 class="text-2xl font-bold"><span class="flowsync-title-outlined">syncsync</span>™</h1>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-indigo-600 focus:outline-none focus:text-indigo-600">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div id="navigation-menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 w-full md:w-auto mt-4 md:mt-0">
+                    <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+                        <li><a href="#introduction" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Introduzione</a></li>
+                        <li><a href="#architecture" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Architettura</a></li>
+                        <li><a href="#backend" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Backend</a></li>
+                        <li><a href="#frontend" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Frontend</a></li>
+                        <li><a href="#frontend-preview" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Anteprima UI</a></li>
+                        <li><a href="#setup" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Setup</a></li>
+                        <li><a href="#future" class="block py-2 px-4 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Sviluppi Futuri</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <section id="introduction" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-semibold text-indigo-700 mb-4">1. Introduzione a syncsync™</h2>
-            <p class="mb-6 text-lg leading-relaxed">
-                syncsync™ è una web application progettata per automatizzare la sincronizzazione dei dati tra un **CRM Zoho (es. Bigin CRM)** e i Portali di Compagnia assicurativi. L'architettura è stata sviluppata prendendo in esempio l'integrazione con Amtrust, ma è pensata per essere facilmente estensibile a diversi altri portali. L'automazione include scenari senza API dirette, utilizzando un bot per simulare l'inserimento manuale.
-            </p>
-            <h3 class="text-2xl font-medium text-gray-700 mb-4">Obiettivi Chiave</h3>
-            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
-                <li>Recupero dati da un CRM Zoho via API.</li>
-                <li>Trasformazione dati per le necessità di un portale di destinazione (es. Amtrust).</li>
-                <li>Simulazione dell'inserimento dati in un portale (es. Amtrust, tramite bot).</li>
-                <li>Monitoraggio in tempo reale dello stato delle operazioni.</li>
-                <li>Frontend reattivo per l'operatore.</li>
-                <li>Supporto per esecuzione automatica (scheduler) e manuale.</li>
-                <li>Estensibilità futura ad altri CRM o portali, inclusi altri prodotti Zoho come Zoho CRM.</li>
-                <li>Piattaforma indipendente dal sistema operativo (browser-based).</li>
-            </ul>
+        <main class="container mx-auto p-6 md:p-8 space-y-12">
 
-            <h3 class="text-2xl font-medium text-gray-700 mb-4">Struttura del Progetto e Panoramica sull'Estensibilità</h3>
-            <p class="mb-4 text-gray-700">
-                Esplora la struttura modulare del progetto syncsync™. Questa visualizzazione ad albero non solo mostra l'organizzazione dei file e delle cartelle, ma illustra anche come l'architettura sia stata pensata per essere facilmente estensibile a nuove integrazioni CRM e portali. Clicca sulle cartelle per espandere o collassare i contenuti e visualizzare le brevi descrizioni dei file.
-            </p>
-            <div id="architecture-tree-intro" class="lively-tree-container font-mono text-sm overflow-x-auto">
-                <ul class="space-y-1">
-                    <li class="tree-node" data-path="syncsync/">syncsync™/
-                        <ul class="ml-4 space-y-1">
-                            <li class="tree-node" data-path="webapp/">webapp/ <span class="lively-tree-description">(Frontend UI)</span>
-                                <ul class="ml-4 space-y-1">
-                                    <li class="tree-file" data-path="webapp/index.html">index.html <span class="lively-tree-description">(Interfaccia principale)</span></li>
-                                    <li class="tree-file" data-path="webapp/styles.css">styles.css <span class="lively-tree-description">(Stili e temi)</span></li>
-                                    <li class="tree-node" data-path="webapp/js/">js/
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-file" data-path="webapp/js/ui-controller.js">ui-controller.js <span class="lively-tree-description">(Gestione interazione utente e visualizzazioni)</span></li>
-                                            <li class="tree-file" data-path="webapp/js/sync-controller.js">sync-controller.js <span class="lively-tree-description">(Orchestrazione lato client, chiamate backend)</span></li>
-                                            <li class="tree-file" data-path="webapp/js/websocket-client.js">websocket-client.js <span class="lively-tree-description">(Connessione realtime con backend)</span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="tree-node" data-path="backend/">backend/ <span class="lively-tree-description">(Backend Node.js)</span>
-                                <ul class="ml-4 space-y-1">
-                                    <li class="tree-file" data-path="backend/launch.js">launch.js <span class="lively-tree-description">(Entry point principale per avvio processo)</span></li>
-                                    <li class="tree-node" data-path="backend/core/">core/ <span class="lively-tree-description">(Logica orchestrazione e gestione flussi)</span>
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-file" data-path="backend/core/dispatch-data.js">dispatch-data.js <span class="lively-tree-description">(Invio dati al bot o modulo corretto)</span></li>
-                                            <li class="tree-file" data-path="backend/core/error-handler.js">error-handler.js <span class="lively-tree-description">(Gestione errori e retry)</span></li>
-                                            <li class="tree-file" data-path="backend/core/fetch-data.js">fetch-data.js <span class="lively-tree-description">(Recupero dati da CRM)</span></li>
-                                            <li class="tree-file" data-path="backend/core/logger.js">logger.js <span class="lively-tree-description">(Scrittura log e comunicazione stato)</span></li>
-                                            <li class="tree-file" data-path="backend/core/scheduler.js">scheduler.js <span class="lively-tree-description">(Scheduling interno)</span></li>
-                                            <li class="tree-file" data-path="backend/core/transform-data.js">transform-data.js <span class="lively-tree-description">(Mappatura e trasformazione dati)</span></li>
-                                        </ul>
-                                    </li>
-                                    <li class="tree-node" data-path="backend/integrations/">integrations/ <span class="lively-tree-description">(Moduli per CRM e portali)</span>
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-node" data-path="backend/integrations/amtrust/">amtrust/
-                                                <ul class="ml-4 space-y-1">
-                                                    <li class="tree-file" data-path="backend/integrations/amtrust/bot.js">bot.js <span class="lively-tree-description">(Automazione inserimento dati su portale Amtrust)</span></li>
-                                                    <li class="tree-file" data-path="backend/integrations/amtrust/mapper.js">mapper.js <span class="lively-tree-description">(Conversione dati formato interno → Amtrust)</span></li>
-                                                </ul>
-                                            </li>
-                                            <li class="tree-node" data-path="backend/integrations/zoho-crm/">zoho-crm/
-                                                <ul class="ml-4 space-y-1">
-                                                    <li class="tree-file" data-path="backend/integrations/zoho-crm/zoho-crm-api.js">zoho-crm-api.js <span class="lively-tree-description">(API wrapper Zoho CRM generico)</span></li>
-                                                    <li class="tree-file" data-path="backend/integrations/zoho-crm/mapper.js">mapper.js <span class="lively-tree-description">(Conversione dati Zoho CRM → formato interno)</span></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="tree-node" data-path="backend/realtime/">realtime/ <span class="lively-tree-description">(Gestione comunicazioni realtime)</span>
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-file" data-path="backend/realtime/event-bus.js">event-bus.js <span class="lively-tree-description">(Gestione eventi interni al sistema)</span></li>
-                                            <li class="tree-file" data-path="backend/realtime/socket-server.js">socket-server.js <span class="lively-tree-description">(WebSocket server per eventi live)</span></li>
-                                        </ul>
-                                    </li>
-                                    <li class="tree-node" data-path="backend/db/">db/ <span class="lively-tree-description">(Persistenza dati e storico)</span>
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-file" data-path="backend/db/db-client.js">db-client.js <span class="lively-tree-description">(Connessione e setup DB)</span></li>
-                                            <li class="tree-file" data-path="backend/db/process-log.js">process-log.js <span class="lively-tree-description">(CRUD log processi e report)</span></li>
-                                        </ul>
-                                    </li>
-                                    <li class="tree-node" data-path="backend/config/">config/ <span class="lively-tree-description">(Configurazioni)</span>
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-file" data-path="backend/config/settings.js">settings.js <span class="lively-tree-description">(Impostazioni di configurazione centralizzate)</span></li>
-                                        </ul>
-                                    </li>
-                                    <li class="tree-node" data-path="backend/logs/">logs/ <span class="lively-tree-description">(Log file per audit e debug)</span>
-                                        <ul class="ml-4 space-y-1">
-                                            <li class="tree-file" data-path="backend/logs/run-YYYYMMDD-HHMM.json">run-YYYYMMDD-HHMM.json <span class="lively-tree-description">(Esempio di log di singola esecuzione)</span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="tree-file" data-path="package.json">package.json <span class="lively-tree-description">(Informazioni sul progetto e dipendenze)</span></li>
-                            <li class="tree-file" data-path="package-lock.json">package-lock.json <span class="lively-tree-description">(Versione delle dipendenze bloccate)</span></li>
-                        </ul>
-                    </li>
+            <section id="introduction" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-indigo-700 mb-4">1. Introduzione a syncsync™</h2>
+                <p class="mb-6 text-lg leading-relaxed">
+                    syncsync™ è una web application progettata per automatizzare la sincronizzazione dei dati tra un **CRM Zoho (es. Bigin CRM)** e i Portali di Compagnia assicurativi. L'architettura è stata sviluppata prendendo in esempio l'integrazione con Amtrust, ma è pensata per essere facilmente estensibile a diversi altri portali. L'automazione include scenari senza API dirette, utilizzando un bot per simulare l'inserimento manuale.
+                </p>
+                <h3 class="text-2xl font-medium text-gray-700 mb-4">Obiettivi Chiave</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
+                    <li>Recupero dati da un CRM Zoho via API.</li>
+                    <li>Trasformazione dati per le necessità di un portale di destinazione (es. Amtrust).</li>
+                    <li>Simulazione dell'inserimento dati in un portale (es. Amtrust, tramite bot).</li>
+                    <li>Monitoraggio in tempo reale dello stato delle operazioni.</li>
+                    <li>Frontend reattivo per l'operatore.</li>
+                    <li>Supporto per esecuzione automatica (scheduler) e manuale.</li>
+                    <li>Estensibilità futura ad altri CRM o portali, inclusi altri prodotti Zoho come Zoho CRM.</li>
+                    <li>Piattaforma indipendente dal sistema operativo (browser-based).</li>
                 </ul>
-            </div>
-        </section>
 
-        <section id="architecture" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-semibold text-indigo-700 mb-4">2. Architettura del Progetto</h2>
-            <p class="mb-6 text-lg leading-relaxed">
-                Il progetto syncsync™ segue un'architettura modulare, suddivisa in frontend (`webapp`) e backend (`backend`), con directory dedicate per configurazioni, log e dipendenze.
-            </p>
-        </section>
+                <h3 class="text-2xl font-medium text-gray-700 mb-4">Struttura del Progetto e Panoramica sull'Estensibilità</h3>
+                <p class="mb-4 text-gray-700">
+                    Esplora la struttura modulare del progetto syncsync™. Questa visualizzazione ad albero non solo mostra l'organizzazione dei file e delle cartelle, ma illustra anche come l'architettura sia stata pensata per essere facilmente estensibile a nuove integrazioni CRM e portali. Clicca sulle cartelle per espandere o collassare i contenuti e visualizzare le brevi descrizioni dei file.
+                </p>
+                <div id="architecture-tree-intro" class="lively-tree-container font-mono text-sm overflow-x-auto">
+                    <ul class="space-y-1">
+                        <li class="tree-node" data-path="syncsync/">syncsync™/
+                            <ul class="ml-4 space-y-1">
+                                <li class="tree-node" data-path="webapp/">webapp/ <span class="lively-tree-description">(Frontend UI)</span>
+                                    <ul class="ml-4 space-y-1">
+                                        <li class="tree-file" data-path="webapp/index.html">index.html <span class="lively-tree-description">(Interfaccia principale)</span></li>
+                                        <li class="tree-file" data-path="webapp/styles.css">styles.css <span class="lively-tree-description">(Stili e temi)</span></li>
+                                        <li class="tree-node" data-path="webapp/js/">js/
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-file" data-path="webapp/js/ui-controller.js">ui-controller.js <span class="lively-tree-description">(Gestione interazione utente e visualizzazioni)</span></li>
+                                                <li class="tree-file" data-path="webapp/js/sync-controller.js">sync-controller.js <span class="lively-tree-description">(Orchestrazione lato client, chiamate backend)</span></li>
+                                                <li class="tree-file" data-path="webapp/js/websocket-client.js">websocket-client.js <span class="lively-tree-description">(Connessione realtime con backend)</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="tree-node" data-path="backend/">backend/ <span class="lively-tree-description">(Backend Node.js)</span>
+                                    <ul class="ml-4 space-y-1">
+                                        <li class="tree-file" data-path="backend/launch.js">launch.js <span class="lively-tree-description">(Entry point principale per avvio processo)</span></li>
+                                        <li class="tree-node" data-path="backend/core/">core/ <span class="lively-tree-description">(Logica orchestrazione e gestione flussi)</span>
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-file" data-path="backend/core/dispatch-data.js">dispatch-data.js <span class="lively-tree-description">(Invio dati al bot o modulo corretto)</span></li>
+                                                <li class="tree-file" data-path="backend/core/error-handler.js">error-handler.js <span class="lively-tree-description">(Gestione errori e retry)</span></li>
+                                                <li class="tree-file" data-path="backend/core/fetch-data.js">fetch-data.js <span class="lively-tree-description">(Recupero dati da CRM)</span></li>
+                                                <li class="tree-file" data-path="backend/core/logger.js">logger.js <span class="lively-tree-description">(Scrittura log e comunicazione stato)</span></li>
+                                                <li class="tree-file" data-path="backend/core/scheduler.js">scheduler.js <span class="lively-tree-description">(Scheduling interno)</span></li>
+                                                <li class="tree-file" data-path="backend/core/transform-data.js">transform-data.js <span class="lively-tree-description">(Mappatura e trasformazione dati)</span></li>
+                                            </ul>
+                                        </li>
+                                        <li class="tree-node" data-path="backend/integrations/">integrations/ <span class="lively-tree-description">(Moduli per CRM e portali)</span>
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-node" data-path="backend/integrations/amtrust/">amtrust/
+                                                    <ul class="ml-4 space-y-1">
+                                                        <li class="tree-file" data-path="backend/integrations/amtrust/bot.js">bot.js <span class="lively-tree-description">(Automazione inserimento dati su portale Amtrust)</span></li>
+                                                        <li class="tree-file" data-path="backend/integrations/amtrust/mapper.js">mapper.js <span class="lively-tree-description">(Conversione dati formato interno → Amtrust)</span></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="tree-node" data-path="backend/integrations/zoho-crm/">zoho-crm/
+                                                    <ul class="ml-4 space-y-1">
+                                                        <li class="tree-file" data-path="backend/integrations/zoho-crm/zoho-crm-api.js">zoho-crm-api.js <span class="lively-tree-description">(API wrapper Zoho CRM generico)</span></li>
+                                                        <li class="tree-file" data-path="backend/integrations/zoho-crm/mapper.js">mapper.js <span class="lively-tree-description">(Conversione dati Zoho CRM → formato interno)</span></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="tree-node" data-path="backend/realtime/">realtime/ <span class="lively-tree-description">(Gestione comunicazioni realtime)</span>
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-file" data-path="backend/realtime/event-bus.js">event-bus.js <span class="lively-tree-description">(Gestione eventi interni al sistema)</span></li>
+                                                <li class="tree-file" data-path="backend/realtime/socket-server.js">socket-server.js <span class="lively-tree-description">(WebSocket server per eventi live)</span></li>
+                                            </ul>
+                                        </li>
+                                        <li class="tree-node" data-path="backend/db/">db/ <span class="lively-tree-description">(Persistenza dati e storico)</span>
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-file" data-path="backend/db/db-client.js">db-client.js <span class="lively-tree-description">(Connessione e setup DB)</span></li>
+                                                <li class="tree-file" data-path="backend/db/process-log.js">process-log.js <span class="lively-tree-description">(CRUD log processi e report)</span></li>
+                                            </ul>
+                                        </li>
+                                        <li class="tree-node" data-path="backend/config/">config/ <span class="lively-tree-description">(Configurazioni)</span>
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-file" data-path="backend/config/settings.js">settings.js <span class="lively-tree-description">(Impostazioni di configurazione centralizzate)</span></li>
+                                            </ul>
+                                        </li>
+                                        <li class="tree-node" data-path="backend/logs/">logs/ <span class="lively-tree-description">(Log file per audit e debug)</span>
+                                            <ul class="ml-4 space-y-1">
+                                                <li class="tree-file" data-path="backend/logs/run-YYYYMMDD-HHMM.json">run-YYYYMMDD-HHMM.json <span class="lively-tree-description">(Esempio di log di singola esecuzione)</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="tree-file" data-path="package.json">package.json <span class="lively-tree-description">(Informazioni sul progetto e dipendenze)</span></li>
+                                <li class="tree-file" data-path="package-lock.json">package-lock.json <span class="lively-tree-description">(Versione delle dipendenze bloccate)</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-        <section id="backend" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-semibold text-indigo-700 mb-4">3. Componenti del Backend (Node.js)</h2>
-            <p class="mb-6 text-lg leading-relaxed">
-                Il backend è il cuore logico di syncsync™, implementato in Node.js per garantire scalabilità e performance. Qui puoi esplorare i dettagli di ciascun modulo.
-            </p>
+            <section id="architecture" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-indigo-700 mb-4">2. Architettura del Progetto</h2>
+                <p class="mb-6 text-lg leading-relaxed">
+                    Il progetto syncsync™ segue un'architettura modulare, suddivisa in frontend (`webapp`) e backend (`backend`), con directory dedicate per configurazioni, log e dipendenze.
+                </p>
+            </section>
 
-            <div class="space-y-4">
-                <div class="accordion-item border rounded-md">
-                    <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                        3.1. Moduli Core (`backend/core/`)
-                    </button>
-                    <div class="accordion-content p-4 text-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>`launch.js`</strong>: Punto di ingresso principale del backend. Inizializza tutte le dipendenze e orchestra il workflow. Gestisce l'avvio dello scheduler e i listener per gli eventi di sincronizzazione.</li>
-                            <li><strong>`logger.js`</strong>: Sistema di logging centralizzato. Registra messaggi sulla console ed emette eventi sull'EventBus per la comunicazione in tempo reale.</li>
-                            <li><strong>`fetch-data.js`</strong>: Responsabile del recupero dati da un CRM Zoho (e potenzialmente altri CRM) tramite `zoho-crm-api.js`.</li>
-                            <li><strong>`transform-data.js`</strong>: Mappatura e trasformazione dei dati grezzi in un formato interno standard e poi nel formato specifico della destinazione.</li>
-                            <li><strong>`dispatch-data.js`</strong>: Invio dei dati trasformati alla destinazione finale (es. portale Amtrust) e aggiornamento dei record corrispondenti nel CRM Zoho.</li>
-                            <li><strong>`error-handler.js`</strong>: Gestione centralizzata degli errori. Ascolta l'evento `sync_error` e aggiorna lo stato del processo a 'failed'.</li>
-                            <li><strong>`scheduler.js`</strong>: Abilita l'esecuzione automatica del workflow emettendo eventi `start_scheduled_sync`.</li>
-                        </ul>
+            <section id="backend" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-indigo-700 mb-4">3. Componenti del Backend (Node.js)</h2>
+                <p class="mb-6 text-lg leading-relaxed">
+                    Il backend è il cuore logico di syncsync™, implementato in Node.js per garantire scalabilità e performance. Qui puoi esplorare i dettagli di ciascun modulo.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="accordion-item border rounded-md">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+                            3.1. Moduli Core (`backend/core/`)
+                        </button>
+                        <div class="accordion-content p-4 text-gray-700 hidden">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>`launch.js`</strong>: Punto di ingresso principale del backend. Inizializza tutte le dipendenze e orchestra il workflow. Gestisce l'avvio dello scheduler e i listener per gli eventi di sincronizzazione.</li>
+                                <li><strong>`logger.js`</strong>: Sistema di logging centralizzato. Registra messaggi sulla console ed emette eventi sull'EventBus per la comunicazione in tempo reale.</li>
+                                <li><strong>`fetch-data.js`</strong>: Responsabile del recupero dati da un CRM Zoho (e potenzialmente altri CRM) tramite `zoho-crm-api.js`.</li>
+                                <li><strong>`transform-data.js`</strong>: Mappatura e trasformazione dei dati grezzi in un formato interno standard e poi nel formato specifico della destinazione.</li>
+                                <li><strong>`dispatch-data.js`</strong>: Invio dei dati trasformati alla destinazione finale (es. portale Amtrust) e aggiornamento dei record corrispondenti nel CRM Zoho.</li>
+                                <li><strong>`error-handler.js`</strong>: Gestione centralizzata degli errori. Ascolta l'evento `sync_error` e aggiorna lo stato del processo a 'failed'.</li>
+                                <li><strong>`scheduler.js`</strong>: Abilita l'esecuzione automatica del workflow emettendo eventi `start_scheduled_sync`.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-md">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+                            3.2. Moduli di Integrazione (`backend/integrations/`)
+                        </button>
+                        <div class="accordion-content p-4 text-gray-700 hidden">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>`zoho-crm/zoho-crm-api.js`</strong>: Wrapper per l'API di un CRM Zoho generico, gestisce autenticazione e recupero/aggiornamento record.</li>
+                                <li><strong>`zoho-crm/mapper.js`</strong>: Mappa i dati da un CRM Zoho generico al formato interno standardizzato di syncsync™.</li>
+                                <li><strong>`amtrust/bot.js`</strong>: Simulazione dell'automazione dell'inserimento dati nel portale Amtrust. Esempio di integrazione senza API dirette.</li>
+                                <li><strong>`amtrust/mapper.js`</strong>: Mappa i dati dal formato interno standardizzato di syncsync™ al formato specifico richiesto da un portale (es. Amtrust). Include la propagazione di `zohoCrmId` e `zohoCrmModule` per il feedback al CRM Zoho.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-md">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+                            3.3. Moduli Realtime (`backend/realtime/`)
+                        </button>
+                        <div class="accordion-content p-4 text-gray-700 hidden">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>`event-bus.js`</strong>: Implementazione di un Event Bus (Pub/Sub pattern) per comunicazione disaccoppiata tra moduli.</li>
+                                <li><strong>`socket-server.js`</strong>: Server WebSocket (libreria `ws`). Gestisce le connessioni dei client frontend e broadcasta eventi di log e stato.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-md">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+                            3.4. Configurazioni (`backend/config/`)
+                        </button>
+                        <div class="accordion-content p-4 text-gray-700 hidden">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>`settings.js`</strong>: File di configurazione centrale per il backend, include impostazioni DB, WebSocket, scheduler e credenziali per le integrazioni.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="accordion-item border rounded-md">
-                    <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                        3.2. Moduli di Integrazione (`backend/integrations/`)
-                    </button>
-                    <div class="accordion-content p-4 text-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>`zoho-crm/zoho-crm-api.js`</strong>: Wrapper per l'API di un CRM Zoho generico, gestisce autenticazione e recupero/aggiornamento record.</li>
-                            <li><strong>`zoho-crm/mapper.js`</strong>: Mappa i dati da un CRM Zoho generico al formato interno standardizzato di syncsync™.</li>
-                            <li><strong>`amtrust/bot.js`</strong>: Simulazione dell'automazione dell'inserimento dati nel portale Amtrust. Esempio di integrazione senza API dirette.</li>
-                            <li><strong>`amtrust/mapper.js`</strong>: Mappa i dati dal formato interno standardizzato di syncsync™ al formato specifico richiesto da un portale (es. Amtrust). Include la propagazione di `zohoCrmId` e `zohoCrmModule` per il feedback al CRM Zoho.</li>
-                        </ul>
+            <section id="frontend" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-indigo-700 mb-4">4. Componenti del Frontend (`webapp/`)</h2>
+                <p class="mb-6 text-lg leading-relaxed">
+                    Il frontend è la dashboard interattiva per l'operatore, implementata con HTML, CSS (Tailwind CSS) e JavaScript puro, progettata per fornire un'esperienza utente reattiva e informativa.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="accordion-item border rounded-md">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+                            Struttura Base e Stili
+                        </button>
+                        <div class="accordion-content p-4 text-gray-700 hidden">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>`index.html`</strong>: Struttura HTML principale della dashboard, include sezioni per lo stato, controlli e log.</li>
+                                <li><strong>`styles.css`</strong>: Fogli di stile personalizzati per migliorare l'estetica e l'esperienza utente.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-md">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
+                            Moduli JavaScript (`webapp/js/`)
+                        </button>
+                        <div class="accordion-content p-4 text-gray-700 hidden">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>`websocket-client.js`</strong>: Client WebSocket lato frontend, gestisce la connessione con il backend e la ricezione/invio di messaggi.</li>
+                                <li><strong>`ui-controller.js`</strong>: Controller dell'interfaccia utente, aggiorna dinamicamente la dashboard in base agli eventi WebSocket.</li>
+                                <li><strong>`sync-controller.js`</strong>: Modulo di controllo della sincronizzazione lato client, fornisce un'astrazione per avviare i processi di sincronizzazione.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="accordion-item border rounded-md">
-                    <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                        3.3. Moduli Realtime (`backend/realtime/`)
-                    </button>
-                    <div class="accordion-content p-4 text-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>`event-bus.js`</strong>: Implementazione di un Event Bus (Pub/Sub pattern) per comunicazione disaccoppiata tra moduli.</li>
-                            <li><strong>`socket-server.js`</strong>: Server WebSocket (libreria `ws`). Gestisce le connessioni dei client frontend e broadcasta eventi di log e stato.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item border rounded-md">
-                    <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                        3.4. Configurazioni (`backend/config/`)
-                    </button>
-                    <div class="accordion-content p-4 text-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>`settings.js`</strong>: File di configurazione centrale per il backend, include impostazioni DB, WebSocket, scheduler e credenziali per le integrazioni.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="frontend" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-semibold text-indigo-700 mb-4">4. Componenti del Frontend (`webapp/`)</h2>
-            <p class="mb-6 text-lg leading-relaxed">
-                Il frontend è la dashboard interattiva per l'operatore, implementata con HTML, CSS (Tailwind CSS) e JavaScript puro, progettata per fornire un'esperienza utente reattiva e informativa.
-            </p>
-
-            <div class="space-y-4">
-                <div class="accordion-item border rounded-md">
-                    <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                        Struttura Base e Stili
-                    </button>
-                    <div class="accordion-content p-4 text-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>`index.html`</strong>: Struttura HTML principale della dashboard, include sezioni per lo stato, controlli e log.</li>
-                            <li><strong>`styles.css`</strong>: Fogli di stile personalizzati per migliorare l'estetica e l'esperienza utente.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item border rounded-md">
-                    <button class="accordion-header w-full text-left p-4 font-semibold text-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                        Moduli JavaScript (`webapp/js/`)
-                    </button>
-                    <div class="accordion-content p-4 text-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>`websocket-client.js`</strong>: Client WebSocket lato frontend, gestisce la connessione con il backend e la ricezione/invio di messaggi.</li>
-                            <li><strong>`ui-controller.js`</strong>: Controller dell'interfaccia utente, aggiorna dinamicamente la dashboard in base agli eventi WebSocket.</li>
-                            <li><strong>`sync-controller.js`</strong>: Modulo di controllo della sincronizzazione lato client, fornisce un'astrazione per avviare i processi di sincronizzazione.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="frontend-preview" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-semibold text-indigo-700 mb-4">5. Anteprima Interfaccia Utente (Frontend)</h2>
-            <p class="mb-6 text-lg leading-relaxed">
-                Questa sezione offre un'anteprima interattiva dell'interfaccia utente della dashboard di syncsync™. Puoi esplorare il layout e gli elementi visivi che l'operatore utilizzerà per monitorare e avviare le sincronizzazioni.
-            </p>
-            <div class="flex justify-center">
-                <iframe class="frontend-preview-iframe" 
-                        srcdoc='
-                            <!DOCTYPE html>
-                            <html>
-                            <head>
-                                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-                                <style>
-                                    body { font-family: "Inter", sans-serif; }
-                                    .status-pill {
-                                        padding: 0.25rem 0.75rem;
-                                        border-radius: 9999px;
-                                        font-weight: 600;
-                                        font-size: 0.875rem;
-                                        text-transform: uppercase;
-                                    }
-                                    .status-pill.success { background-color: #d1fae5; color: #065f46; } /* green-100, green-800 */
-                                    .status-pill.info { background-color: #dbeafe; color: #1e40af; } /* blue-100, blue-800 */
-                                    .status-pill.error { background-color: #fee2e2; color: #991b1b; } /* red-100, red-800 */
-                                    h1.flowsync-title {
-                                        color: white;
-                                        text-shadow: -2px -2px #6366f1, 2px -2px #6366f1, -2px 2px #6366f1, 2px 2px #6366f1,
-                                                     -2px 0px #6366f1, 0px -2px #6366f1, 2px 0px #6366f1, 0px 2px #6366f1; /* Increased outline */
-                                    }
-                                </style>
-                            </head>
-                            <body class="bg-gray-100 p-4">
-                                <div class="bg-white rounded-xl shadow-lg p-6 max-w-full mx-auto">
-                                    <h1 class="text-3xl font-bold mb-6 text-center flowsync-title">syncsync™</h1>
-                                    
-                                    <!-- Sezione Stato e Controlli -->
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                        <div class="dashboard-card">
-                                            <p class="text-sm text-gray-500">Stato Corrente</p>
-                                            <span class="status-pill info mt-1">Connesso</span>
-                                        </div>
-                                        <div class="dashboard-card">
-                                            <p class="text-sm text-gray-500">Sincronizzazioni Completate</p>
-                                            <p class="text-2xl font-bold text-green-600">12</p>
-                                        </div>
-                                        <div class="dashboard-card">
-                                            <p class="text-sm text-gray-500">Record Inviati Oggi</p>
-                                            <p class="text-2xl font-bold text-blue-600">45</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Barra di Progresso -->
-                                    <div class="mb-6">
-                                        <p class="text-sm text-gray-500 mb-2">Progresso Ultima Sincronizzazione: <span class="font-medium text-gray-700">Recupero Dati (75%)</span></p>
-                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                            <div class="bg-indigo-500 h-2.5 rounded-full" style="width: 75%;"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pulsante Avvia Sincronizzazione -->
-                                    <div class="mb-6">
-                                        <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105">
-                                            Avvia Sincronizzazione Manuale
-                                        </button>
-                                    </div>
-
-                                    <!-- Log Attività Recenti -->
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Log Attività Recenti</h3>
-                                        <div class="space-y-3 max-h-48 overflow-y-auto">
-                                            <div class="dashboard-log-item flex items-center justify-between">
-                                                <span class="text-gray-700 text-sm">✅ Sincronizzazione completata con successo.</span>
-                                                <span class="text-xs text-gray-500">10:35:01</span>
+            <section id="frontend-preview" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-indigo-700 mb-4">5. Anteprima Interfaccia Utente (Frontend)</h2>
+                <p class="mb-6 text-lg leading-relaxed">
+                    Questa sezione offre un'anteprima interattiva dell'interfaccia utente della dashboard di syncsync™. Puoi esplorare il layout e gli elementi visivi che l'operatore utilizzerà per monitorare e avviare le sincronizzazioni.
+                </p>
+                <div class="flex justify-center">
+                    <iframe class="frontend-preview-iframe" 
+                            srcdoc='
+                                <!DOCTYPE html>
+                                <html>
+                                <head>
+                                    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+                                    <style>
+                                        body { font-family: "Inter", sans-serif; }
+                                        .status-pill {
+                                            padding: 0.25rem 0.75rem;
+                                            border-radius: 9999px;
+                                            font-weight: 600;
+                                            font-size: 0.875rem;
+                                            text-transform: uppercase;
+                                        }
+                                        .status-pill.success { background-color: #d1fae5; color: #065f46; } /* green-100, green-800 */
+                                        .status-pill.info { background-color: #dbeafe; color: #1e40af; } /* blue-100, blue-800 */
+                                        .status-pill.error { background-color: #fee2e2; color: #991b1b; } /* red-100, red-800 */
+                                        h1.flowsync-title {
+                                            color: white;
+                                            text-shadow: -2px -2px #6366f1, 2px -2px #6366f1, -2px 2px #6366f1, 2px 2px #6366f1,
+                                                         -2px 0px #6366f1, 0px -2px #6366f1, 2px 0px #6366f1, 0px 2px #6366f1; /* Increased outline */
+                                        }
+                                    </style>
+                                </head>
+                                <body class="bg-gray-100 p-4">
+                                    <div class="bg-white rounded-xl shadow-lg p-6 max-w-full mx-auto">
+                                        <h1 class="text-3xl font-bold mb-6 text-center flowsync-title">syncsync™</h1>
+                                        
+                                        <!-- Sezione Stato e Controlli -->
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                            <div class="dashboard-card">
+                                                <p class="text-sm text-gray-500">Stato Corrente</p>
+                                                <span class="status-pill info mt-1">Connesso</span>
                                             </div>
-                                            <div class="dashboard-log-item flex items-center justify-between">
-                                                <span class="text-gray-700 text-sm">🔄 Invio dati ad Amtrust...</span>
-                                                <span class="text-xs text-gray-500">10:34:45</span>
+                                            <div class="dashboard-card">
+                                                <p class="text-sm text-gray-500">Sincronizzazioni Completate</p>
+                                                <p class="text-2xl font-bold text-green-600">12</p>
                                             </div>
-                                            <div class="dashboard-log-item flex items-center justify-between">
-                                                <span class="text-gray-700 text-sm">📊 Dati trasformati.</span>
-                                                <span class="text-xs text-gray-500">10:34:30</span>
+                                            <div class="dashboard-card">
+                                                <p class="text-sm text-gray-500">Record Inviati Oggi</p>
+                                                <p class="text-2xl font-bold text-blue-600">45</p>
                                             </div>
-                                            <div class="dashboard-log-item flex items-center justify-between">
-                                                <span class="text-gray-700 text-sm">📥 Recupero dati da Zoho CRM...</span>
-                                                <span class="text-xs text-gray-500">10:34:15</span>
+                                        </div>
+
+                                        <!-- Barra di Progresso -->
+                                        <div class="mb-6">
+                                            <p class="text-sm text-gray-500 mb-2">Progresso Ultima Sincronizzazione: <span class="font-medium text-gray-700">Recupero Dati (75%)</span></p>
+                                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                <div class="bg-indigo-500 h-2.5 rounded-full" style="width: 75%;"></div>
                                             </div>
-                                            <div class="dashboard-log-item flex items-center justify-between">
-                                                <span class="text-red-700 text-sm">❌ Errore: Credenziali non valide.</span>
-                                                <span class="text-xs text-gray-500">09:15:20</span>
+                                        </div>
+
+                                        <!-- Pulsante Avvia Sincronizzazione -->
+                                        <div class="mb-6">
+                                            <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105">
+                                                Avvia Sincronizzazione Manuale
+                                            </button>
+                                        </div>
+
+                                        <!-- Log Attività Recenti -->
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Log Attività Recenti</h3>
+                                            <div class="space-y-3 max-h-48 overflow-y-auto">
+                                                <div class="dashboard-log-item flex items-center justify-between">
+                                                    <span class="text-gray-700 text-sm">✅ Sincronizzazione completata con successo.</span>
+                                                    <span class="text-xs text-gray-500">10:35:01</span>
+                                                </div>
+                                                <div class="dashboard-log-item flex items-center justify-between">
+                                                    <span class="text-gray-700 text-sm">🔄 Invio dati ad Amtrust...</span>
+                                                    <span class="text-xs text-gray-500">10:34:45</span>
+                                                </div>
+                                                <div class="dashboard-log-item flex items-center justify-between">
+                                                    <span class="text-gray-700 text-sm">📊 Dati trasformati.</span>
+                                                    <span class="text-xs text-gray-500">10:34:30</span>
+                                                </div>
+                                                <div class="dashboard-log-item flex items-center justify-between">
+                                                    <span class="text-gray-700 text-sm">📥 Recupero dati da Zoho CRM...</span>
+                                                    <span class="text-xs text-gray-500">10:34:15</span>
+                                                </div>
+                                                <div class="dashboard-log-item flex items-center justify-between">
+                                                    <span class="text-red-700 text-sm">❌ Errore: Credenziali non valide.</span>
+                                                    <span class="text-xs text-gray-500">09:15:20</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -488,6 +502,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const passwordInput = document.getElementById('password-input');
+            const loginButton = document.getElementById('login-button');
+            const errorMessage = document.getElementById('error-message');
+            const loginScreen = document.getElementById('login-screen');
+            const appContent = document.getElementById('app-content');
+
+            const correctPassword = 'demo123'; // In un'applicazione reale, la password non dovrebbe essere hardcoded nel codice!
+
+            loginButton.addEventListener('click', () => {
+                if (passwordInput.value === correctPassword) {
+                    loginScreen.classList.add('hidden');
+                    appContent.classList.remove('hidden');
+                } else {
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+
             // Smooth scrolling for navigation
             document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
